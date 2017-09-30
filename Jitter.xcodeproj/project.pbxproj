@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920D6C0F1F8020200033CF6B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D6C0E1F8020200033CF6B /* User.swift */; };
+		920D6C111F80202B0033CF6B /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D6C101F80202B0033CF6B /* Tweet.swift */; };
 		9264523E1F79EAB900F74274 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9264523D1F79EAB900F74274 /* AppDelegate.swift */; };
 		926452431F79EAB900F74274 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926452411F79EAB900F74274 /* Main.storyboard */; };
 		926452451F79EAB900F74274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 926452441F79EAB900F74274 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* Begin PBXFileReference section */
 		12A06ADAADA900C4D5A1B2FA /* Pods-Jitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jitter/Pods-Jitter.release.xcconfig"; sourceTree = "<group>"; };
 		36C7B1B9EE347E1EFB60E500 /* Pods_Jitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		920D6C0E1F8020200033CF6B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		920D6C101F80202B0033CF6B /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		9264523A1F79EAB900F74274 /* Jitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9264523D1F79EAB900F74274 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		926452421F79EAB900F74274 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,6 +61,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		920D6C0C1F801FD40033CF6B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				920D6C0E1F8020200033CF6B /* User.swift */,
+				920D6C101F80202B0033CF6B /* Tweet.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		920D6C0D1F801FED0033CF6B /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		926452311F79EAB900F74274 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +98,8 @@
 		9264523C1F79EAB900F74274 /* Jitter */ = {
 			isa = PBXGroup;
 			children = (
+				920D6C0D1F801FED0033CF6B /* API */,
+				920D6C0C1F801FD40033CF6B /* Models */,
 				926F30041F7B353D00495992 /* ViewControllers */,
 				9264523D1F79EAB900F74274 /* AppDelegate.swift */,
 				926452411F79EAB900F74274 /* Main.storyboard */,
@@ -229,6 +251,8 @@
 			files = (
 				926F30061F7B356400495992 /* LoginViewController.swift in Sources */,
 				9264523E1F79EAB900F74274 /* AppDelegate.swift in Sources */,
+				920D6C0F1F8020200033CF6B /* User.swift in Sources */,
+				920D6C111F80202B0033CF6B /* Tweet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

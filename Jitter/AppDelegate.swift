@@ -74,7 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             progress: nil,
             success: { (urlSessionTask: URLSessionTask, result: Any?) in
                 let credentials = result as! NSDictionary
-                print("name: \(credentials["name"]!)")
+                let user = User(dictionary: credentials)
+                print("name: \(user.name!)")
+                print("profile url \(user.profileUrl!)")
             },
             failure: { (urlSessionTask: URLSessionTask?, error: Error) in
                 print(error)
@@ -84,10 +86,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             parameters: nil,
             progress: nil,
             success: { (urlSessionTask: URLSessionTask, result: Any?) in
-                let tweets = result as! [NSDictionary]
-                for tweet in tweets {
-                    print("\(tweet["text"]!)")
-                }
+                let tweetsDictionary = result as! [NSDictionary]
+                let tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
+                tweets.forEach({ (tweet) -> Void in
+                     print(tweet)
+                })
         },
             failure: { (urlSessionTask: URLSessionTask?, error: Error) in
                 print(error)
