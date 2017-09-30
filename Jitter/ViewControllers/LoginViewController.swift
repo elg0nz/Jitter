@@ -9,9 +9,7 @@
 import UIKit
 import BDBOAuth1Manager
 
-let baseURL = "https://api.twitter.com"
-let consumerKey = "KZ8xWPOiKDr4uapnr3eDGHe24"
-let consumerSecret = "O9HxZSnrZ50DNoH80Ss0rHQBDsmjgwKuIyrm8hIIIBGrrFSfJy"
+
 
 class LoginViewController: UIViewController {
     override func viewDidLoad() {
@@ -26,14 +24,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func onLoginButton(_ sender: Any) {
-        let twitterClient = BDBOAuth1SessionManager(
-            baseURL: URL(string: baseURL)!,
-            consumerKey: consumerKey,
-            consumerSecret: consumerSecret
-        )
-        twitterClient?.deauthorize() // TODO: Is this still necessary?
-
-        twitterClient?.fetchRequestToken(
+        TwitterClient.sharedInstance.deauthorize() // TODO: Is this still necessary?
+        TwitterClient.sharedInstance.fetchRequestToken(
             withPath: "oauth/request_token",
             method: "GET",
             callbackURL: URL(string: "jitter://oauth/callback"),
@@ -43,7 +35,7 @@ class LoginViewController: UIViewController {
         )
     }
     private func requestTokenSuccess(requestToken: BDBOAuth1Credential!) {
-        let url = URL(string: "\(baseURL)/oauth/authorize?oauth_token=\(requestToken.token!)")
+        let url = URL(string: "\(baseApiURL)/oauth/authorize?oauth_token=\(requestToken.token!)")
         UIApplication.shared.open(url!, options: [:], completionHandler: openedTokenUrl)
     }
 
