@@ -19,4 +19,35 @@ class TwitterClient: BDBOAuth1SessionManager {
         consumerKey: consumerKey,
         consumerSecret: consumerSecret
     )
+
+    func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (NSError) -> ()) {
+        TwitterClient.sharedInstance.get(
+            "1.1/statuses/home_timeline.json",
+            parameters: nil,
+            progress: nil,
+            success: { (urlSessionTask: URLSessionTask, result: Any?) in
+                let tweetsDictionary = result as! [NSDictionary]
+                let tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
+                success(tweets)
+        },
+            failure: { (urlSessionTask: URLSessionTask?, error: Error) in
+                failure(error as NSError)
+        })
+    }
+
+    func currentAccount() {
+        get(
+            "1.1/account/verify_credentials.json",
+            parameters: nil,
+            progress: nil,
+            success: { (urlSessionTask: URLSessionTask, result: Any?) in
+                let credentials = result as! NSDictionary
+                let user = User(dictionary: credentials)
+                print("name: \(user.name!)")
+                print("profile url \(user.profileUrl!)")
+        },
+            failure: { (urlSessionTask: URLSessionTask?, error: Error) in
+                print(error)
+        })
+    }
 }
