@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
 
+        let twitterClient = BDBOAuth1SessionManager(
+            baseURL: URL(string: baseURL)!,
+            consumerKey: consumerKey,
+            consumerSecret: consumerSecret
+        )
+
+        twitterClient?.fetchAccessToken(
+            withPath: "oauth/access_token",
+            method: "POST",
+            requestToken: requestToken,
+            success: fetchAccessTokenSuccess,
+            failure: fetchAccessTokenFailure
+        )
+        return true
+    }
+
+    private func fetchAccessTokenSuccess (credential: BDBOAuth1Credential!) -> Void {
+        print(credential)
+        let twitterClient = BDBOAuth1SessionManager(
+            baseURL: URL(string: baseURL)!,
+            consumerKey: consumerKey,
+            consumerSecret: consumerSecret
+        )
+        twitterClient?.get(
+            "1.1/account/verify_credentials.json",
+            parameters: nil,
+            progress: nil,
+            success: { (urlSessionTask: URLSessionTask, result: Any?) in
+                let credentials = result as! NSDictionary
+                print("name: \(credentials["name"]!)")
+            },
+            failure: { (urlSessionTask: URLSessionTask?, error: Error) in
+                print(error)
+        })
+        twitterClient?.get(
+            "1.1/statuses/home_timeline.json",
+            parameters: nil,
+            progress: nil,
+            success: { (urlSessionTask: URLSessionTask, result: Any?) in
+                let tweets = result as! [NSDictionary]
+                for tweet in tweets {
+                    print("\(tweet["text"]!)")
+                }
+        },
+            failure: { (urlSessionTask: URLSessionTask?, error: Error) in
+                print(error)
+        })
+    }
+
+    private func fetchAccessTokenFailure (error: Error!) {
+        print(error)
+    }
 }
 
