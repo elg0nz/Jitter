@@ -14,7 +14,10 @@ class User: NSObject {
     var profileUrl: NSURL?
     var tagline: NSString?
 
+    private var dictionary: NSDictionary?
+
     init(dictionary: NSDictionary) {
+        self.dictionary = dictionary
         name = dictionary["name"] as? NSString
         screenname = dictionary["screen_name"] as? NSString
         let profileUrlString = dictionary["profile_image_url_https"] as? String
@@ -22,5 +25,34 @@ class User: NSObject {
             profileUrl = NSURL(string: profileUrlString)
         }
         tagline = dictionary["description"] as? NSString
+    }
+
+    static private var _currentUser: User?
+
+    class var currentUser: User? {
+        get {
+            if (_currentUser != nil) {
+                return _currentUser
+            }
+
+            let data = UserDefaults.standard.object(forKey: "currentUserData") as? Data
+            if (data != nil) {
+                let dictionary = try! JSONSerialization.jsonObject(with: data!, options: []) as! NSDictionary
+                _currentUser = User(dictionary: dictionary)
+            }
+            return _currentUser
+        }
+        set(user) {
+            _currentUser = user
+            let defaults = UserDefaults.standard
+            if let user = user {
+                let data = try! JSONSerialization.data(withJSONObject: user.dictionary!, options: [])
+                defaults.set(data, forKey: "currentUserData")
+            } else{
+                defaults.set(nil, forKey: "currentUserData")
+            }
+            defaults.synchronize()
+
+        }
     }
 }
