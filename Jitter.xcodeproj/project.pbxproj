@@ -16,6 +16,7 @@
 		926452451F79EAB900F74274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 926452441F79EAB900F74274 /* Assets.xcassets */; };
 		926452481F79EAB900F74274 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926452461F79EAB900F74274 /* LaunchScreen.storyboard */; };
 		926F30061F7B356400495992 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926F30051F7B356400495992 /* LoginViewController.swift */; };
+		928CBEB41F80CC4C00CECA7A /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928CBEB31F80CC4C00CECA7A /* ComposerViewController.swift */; };
 		BD35CB551C83DB3999C9CF45 /* Pods_Jitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C7B1B9EE347E1EFB60E500 /* Pods_Jitter.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		926452471F79EAB900F74274 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		926452491F79EAB900F74274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		926F30051F7B356400495992 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		928CBEB31F80CC4C00CECA7A /* ComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewController.swift; sourceTree = "<group>"; };
 		F63A86DEF67A4DCBEA44F84F /* Pods-Jitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jitter/Pods-Jitter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 			children = (
 				926F30051F7B356400495992 /* LoginViewController.swift */,
 				920D6C141F8076D50033CF6B /* TweetsViewController.swift */,
+				928CBEB31F80CC4C00CECA7A /* ComposerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				920D6C131F8028EE0033CF6B /* TwitterClient.swift in Sources */,
+				928CBEB41F80CC4C00CECA7A /* ComposerViewController.swift in Sources */,
 				926F30061F7B356400495992 /* LoginViewController.swift in Sources */,
 				920D6C151F8076D50033CF6B /* TweetsViewController.swift in Sources */,
 				9264523E1F79EAB900F74274 /* AppDelegate.swift in Sources */,

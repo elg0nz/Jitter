@@ -69,6 +69,11 @@
                                 <action selector="onLogoutButton:" destination="AiT-3a-ajL" id="AiW-lW-Npi"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Compose" id="IbA-V1-y7k">
+                            <connections>
+                                <segue destination="A2n-3o-Ddb" kind="presentation" id="6aG-pj-jyF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tweetsTableView" destination="YxB-OD-h8m" id="SmB-RC-abX"/>
@@ -77,6 +82,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSy-kI-GM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2062" y="34"/>
+        </scene>
+        <!--Composer View Controller-->
+        <scene sceneID="rKO-9W-lab">
+            <objects>
+                <viewController id="vo1-Fd-OTZ" customClass="ComposerViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f3e-XJ-NYA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ks-uF-3ax">
+                                <rect key="frame" x="16" y="102" width="343" height="128"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" selected="YES" keyboardKey="YES" allowsDirectInteraction="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="euh-uW-2Wn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4j9-Jy-gVa" firstAttribute="trailing" secondItem="0ks-uF-3ax" secondAttribute="trailing" constant="16" id="D9K-yV-koZ"/>
+                            <constraint firstItem="0ks-uF-3ax" firstAttribute="leading" secondItem="4j9-Jy-gVa" secondAttribute="leading" constant="16" id="ERL-SS-90s"/>
+                            <constraint firstItem="0ks-uF-3ax" firstAttribute="top" secondItem="4j9-Jy-gVa" secondAttribute="top" constant="38" id="g1b-lM-yqP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4j9-Jy-gVa"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ze0-8Z-1f3">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="rIU-F1-GUv">
+                            <connections>
+                                <action selector="onCancelButton:" destination="vo1-Fd-OTZ" id="NGv-CK-d7T"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="82D-bX-OwS">
+                            <connections>
+                                <action selector="onTweetButton:" destination="vo1-Fd-OTZ" id="Gb0-TN-FA2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="0ks-uF-3ax" id="34p-J9-P6b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FSg-fR-wOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3776.8000000000002" y="33.733133433283363"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZXh-ZE-s1e">
@@ -113,6 +167,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jUh-pz-YUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-369" y="34"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Tr4-GD-SJ4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A2n-3o-Ddb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dxw-3r-R8F">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vo1-Fd-OTZ" kind="relationship" relationship="rootViewController" id="HoI-qF-kQ4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqk-X7-mpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2916" y="34"/>
         </scene>
     </scenes>
 </document>

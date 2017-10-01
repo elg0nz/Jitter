@@ -10,8 +10,8 @@ import UIKit
 import BDBOAuth1Manager
 
 let baseApiURL = "https://api.twitter.com"
-private let consumerKey = "KZ8xWPOiKDr4uapnr3eDGHe24"
-private let consumerSecret = "O9HxZSnrZ50DNoH80Ss0rHQBDsmjgwKuIyrm8hIIIBGrrFSfJy"
+private let consumerKey = "Ql8AFZCnu4WaVteVRT4TEFptU"
+private let consumerSecret = "FSjjgoBKlD39DxPSZKm8P4fTT54hBZjIPuA3FfldkuYlJTIaKe"
 
 class TwitterClient: BDBOAuth1SessionManager {
     static let sharedInstance: TwitterClient = TwitterClient(
@@ -107,5 +107,21 @@ class TwitterClient: BDBOAuth1SessionManager {
             failure: { (urlSessionTask: URLSessionTask?, error: Error) in
                 failure(error)
         })
+    }
+
+    func createUpdate(text: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let parameters: [String: AnyObject] = ["status": text as AnyObject]
+        self.post(
+            "1.1/statuses/update.json",
+            parameters: parameters,
+            progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                success()
+            },
+            failure: { (task: URLSessionDataTask?, error: Error) in
+                print(error.localizedDescription)
+                failure(error)
+            }
+        )
     }
 }
