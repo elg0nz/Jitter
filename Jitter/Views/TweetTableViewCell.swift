@@ -37,6 +37,7 @@ class TweetTableViewCell: UITableViewCell {
             userNameLabel.text = user.screenname
             fullNameLabel.text = user.name
         }
+        hoursAgoLabel.text = tweet.timestamp?.timeAgo()
     }
 
     override func awakeFromNib() {
