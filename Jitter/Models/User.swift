@@ -28,6 +28,7 @@ class User: NSObject {
     }
 
     static private var _currentUser: User?
+    static let userDidLogoutNotificationName = NSNotification.Name(rawValue: "userDidLogout")
 
     class var currentUser: User? {
         get {

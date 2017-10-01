@@ -96,7 +96,7 @@
         <!--Navigation Controller-->
         <scene sceneID="o2s-c7-ryJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HD9-ba-Rqr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="HD9-ba-Rqr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qFX-BW-VHj">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

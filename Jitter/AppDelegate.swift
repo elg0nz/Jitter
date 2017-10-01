@@ -24,6 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = vc
         }
 
+        NotificationCenter.default.addObserver(
+            forName: User.userDidLogoutNotificationName,
+            object: nil,
+            queue: OperationQueue.main
+        ) { (notification: Notification) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = vc
+        }
         return true
     }
 
