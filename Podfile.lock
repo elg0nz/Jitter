@@ -16,15 +16,18 @@ PODS:
     - AFNetworking/NSURLSession
   - BDBOAuth1Manager (2.0.0):
     - AFNetworking/NSURLSession (~> 3.0.0)
+  - MBProgressHUD (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
+  - MBProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
 
-PODFILE CHECKSUM: 645e63b637b0f57354d502c2e184a36c37c7a613
+PODFILE CHECKSUM: fa44819c0ab51990ccb3d796496130d11f2c9d10
 
 COCOAPODS: 1.3.1

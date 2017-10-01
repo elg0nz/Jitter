@@ -19,7 +19,9 @@ class User: NSObject {
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         name = dictionary["name"] as? String
-        screenname = dictionary["screen_name"] as? String
+        if let nick = dictionary["screen_name"] as? String {
+            screenname = "@\(nick)"
+        }
         let profileUrlString = dictionary["profile_image_url_https"] as? String
         if let profileUrlString = profileUrlString {
             profileUrl = URL(string: profileUrlString)

@@ -10,6 +10,7 @@ import UIKit
 import AFNetworking
 
 class TweetTableViewCell: UITableViewCell {
+    var tweet: Tweet?
     @IBOutlet weak var retweetLabel: UILabel!
     @IBOutlet weak var fullNameLabel: UILabel! // TODO: Rename to avoid confusion
     @IBOutlet weak var userNameLabel: UILabel!
@@ -17,18 +18,8 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetBodyLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
 
-    @IBAction func onRetweetButton(_ sender: Any) {
-        print("retweet")
-    }
-    @IBAction func onReplyButton(_ sender: Any) {
-        print("reply")
-    }
-
-    @IBAction func onHeartButton(_ sender: Any) {
-        print("heart")
-    }
-
     func loadData(tweet: Tweet) {
+        self.tweet = tweet
         tweetBodyLabel.text = tweet.text ?? ""
         retweetLabel.text = ""
         hoursAgoLabel.text = "?h"

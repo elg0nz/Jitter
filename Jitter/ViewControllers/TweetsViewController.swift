@@ -66,6 +66,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         tweetsTableView.dataSource = self
         tweetsTableView.estimatedRowHeight = 125
+
         self.reloadHomeTweets()
         setRefreshControl()
         setAlertView()
@@ -73,5 +74,16 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tweetDetail" {
+            let cell = sender as! TweetTableViewCell
+            let navVC = segue.destination as! UINavigationController
+            let destinationVC = navVC.topViewController as! TweetDetailViewController
+            destinationVC.tweet = cell.tweet
+            destinationVC.delegate = self as? TweetDetailViewControllerDelegate
+        }
     }
 }

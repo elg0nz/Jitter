@@ -8,4 +8,5 @@ target 'Jitter' do
   # Pods for Yelp
   pod 'AFNetworking'
   pod 'BDBOAuth1Manager'
+  pod 'MBProgressHUD'
 end

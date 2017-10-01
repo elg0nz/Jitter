@@ -21,16 +21,24 @@ class Tweet: NSObject, Comparable {
     var timestamp: Date?
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
+    var replyCount: Int = 0
     var user: User?
+    var replied: Bool = false
+    var retweeted: Bool = false
+    var favorited: Bool = false
+    var id: Int64?
 
     override var description: String {
         return "\(text!) - rt \(retweetCount) - fv \(favoritesCount) \(timestamp!)"
     }
 
     init(dictionary: NSDictionary) {
+        id = dictionary["id"] as? Int64
         text = dictionary["text"] as? String
         retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
         favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0
+        retweeted = (dictionary["retweeted"] as? Bool) ?? false
+        favorited = (dictionary["favorited"] as? Bool) ?? false
         let timestampString = dictionary["created_at"] as? String
         if let timestampString = timestampString {
             let formatter = DateFormatter()

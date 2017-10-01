@@ -124,4 +124,24 @@ class TwitterClient: BDBOAuth1SessionManager {
             }
         )
     }
+
+    func fave(id: Int64, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+        let stringId = String(id)
+        let parameters: [String: String] = ["id": stringId]
+        self.post(
+            "1.1/favorites/create.json",
+            parameters: parameters,
+            progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) -> Void in
+                let tweetDict = response as! NSDictionary
+                let tweet = Tweet(dictionary: tweetDict)
+                tweet.favorited = true
+                success(tweet)
+            },
+            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
+                print(error.localizedDescription)
+                failure(error)
+            }
+        )
+    }
 }
