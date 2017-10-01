@@ -30,25 +30,40 @@ class TweetDetailViewController: UIViewController {
     }
 
     @IBAction func onRetweetButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        guard let tweet = self.tweet, tweet.id != nil else {
+            self.alertController.message = "Could not find tweet"
+            self.present(self.alertController, animated: true)
+            return
+        }
+
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = "Retweeting..."
+        TwitterClient.sharedInstance.retweet(id: tweet.id!, success: { (tweet: Tweet) in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }) { (error: Error) in
+            print(error.localizedDescription)
+            self.alertController.message = "Error retweeting"
+            self.present(self.alertController, animated: true)
+        }
     }
 
     @IBAction func onHeartButton(_ sender: Any) {
-        if tweet == nil {
-            return
-        }
-        let tweet_id = tweet!.id
-        if tweet_id == nil {
+        guard let tweet = self.tweet, tweet.id != nil else {
+            self.alertController.message = "Could not find tweet"
+            self.present(self.alertController, animated: true)
             return
         }
 
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        TwitterClient.sharedInstance.fave(id: tweet_id!, success: { (tweet: Tweet) in
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = "Hearting..."
+        TwitterClient.sharedInstance.fave(id: tweet.id!, success: { (tweet: Tweet) in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.dismiss(animated: true, completion: nil)
         }) { (error: Error) in
             print(error.localizedDescription)
             self.alertController.message = "Error hearting tweet"
+            self.present(self.alertController, animated: true)
         }
     }
 
