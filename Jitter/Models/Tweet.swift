@@ -17,18 +17,18 @@ class Tweet: NSObject, Comparable {
         return false
     }
 
-    // TODO: Use String instead
-    var text: NSString?
+    var text: String?
     var timestamp: Date?
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
+    var user: User?
 
     override var description: String {
         return "\(text!) - rt \(retweetCount) - fv \(favoritesCount) \(timestamp!)"
     }
 
     init(dictionary: NSDictionary) {
-        text = dictionary["text"] as? NSString
+        text = dictionary["text"] as? String
         retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
         favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0
         let timestampString = dictionary["created_at"] as? String
@@ -36,6 +36,10 @@ class Tweet: NSObject, Comparable {
             let formatter = DateFormatter()
             formatter.dateFormat = "EE MMM d HH:mm:ss Z y"
             timestamp = formatter.date(from: timestampString)
+        }
+        let userDict = dictionary["user"] as? NSDictionary
+        if let userDict = userDict {
+            user = User(dictionary: userDict)
         }
     }
 

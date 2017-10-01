@@ -28,8 +28,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tweet = tweets[indexPath.row]
-        let cell = UITableViewCell()
-        cell.textLabel?.text = tweet.description
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tweetTableViewCell") as! TweetTableViewCell
+        cell.loadData(tweet: tweet)
         return cell
     }
 
@@ -65,6 +65,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         tweetsTableView.dataSource = self
+        tweetsTableView.estimatedRowHeight = 125
         self.reloadHomeTweets()
         setRefreshControl()
         setAlertView()

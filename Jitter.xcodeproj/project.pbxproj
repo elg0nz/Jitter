@@ -17,6 +17,7 @@
 		926452481F79EAB900F74274 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926452461F79EAB900F74274 /* LaunchScreen.storyboard */; };
 		926F30061F7B356400495992 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926F30051F7B356400495992 /* LoginViewController.swift */; };
 		928CBEB41F80CC4C00CECA7A /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928CBEB31F80CC4C00CECA7A /* ComposerViewController.swift */; };
+		928CBEB71F816E1000CECA7A /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928CBEB61F816E1000CECA7A /* TweetTableViewCell.swift */; };
 		BD35CB551C83DB3999C9CF45 /* Pods_Jitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C7B1B9EE347E1EFB60E500 /* Pods_Jitter.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		926452491F79EAB900F74274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		926F30051F7B356400495992 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		928CBEB31F80CC4C00CECA7A /* ComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewController.swift; sourceTree = "<group>"; };
+		928CBEB61F816E1000CECA7A /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		F63A86DEF67A4DCBEA44F84F /* Pods-Jitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jitter/Pods-Jitter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 		9264523C1F79EAB900F74274 /* Jitter */ = {
 			isa = PBXGroup;
 			children = (
+				928CBEB51F816DC300CECA7A /* Views */,
 				920D6C0D1F801FED0033CF6B /* API */,
 				920D6C0C1F801FD40033CF6B /* Models */,
 				926F30041F7B353D00495992 /* ViewControllers */,
@@ -125,6 +128,14 @@
 				928CBEB31F80CC4C00CECA7A /* ComposerViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		928CBEB51F816DC300CECA7A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				928CBEB61F816E1000CECA7A /* TweetTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +276,7 @@
 				9264523E1F79EAB900F74274 /* AppDelegate.swift in Sources */,
 				920D6C0F1F8020200033CF6B /* User.swift in Sources */,
 				920D6C111F80202B0033CF6B /* Tweet.swift in Sources */,
+				928CBEB71F816E1000CECA7A /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

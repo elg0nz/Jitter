@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,6 +53,127 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YxB-OD-h8m">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetTableViewCell" rowHeight="165" id="8db-wL-fnq" customClass="TweetTableViewCell" customModule="Jitter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="165"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8db-wL-fnq" id="uDk-Gh-f23">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9fA-pc-bp5">
+                                                    <rect key="frame" x="23" y="33" width="72" height="72"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="72" id="cZJ-1l-ZUc"/>
+                                                        <constraint firstAttribute="height" constant="72" id="vqK-7K-EZu"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="someone retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3o9-dL-YIE">
+                                                    <rect key="frame" x="103" y="15" width="152" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doeson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4L-S6-YFY">
+                                                    <rect key="frame" x="103" y="38" width="88" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@thejoeson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYf-SW-Wz5">
+                                                    <rect key="frame" x="207" y="38" width="77" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTH-1q-1kf">
+                                                    <rect key="frame" x="322" y="38" width="18" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="17" id="82k-LR-Igb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DId you know you can tell if someone is a programmer simpy by saying the word timezone and they cringe." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGo-7J-6l7">
+                                                    <rect key="frame" x="103" y="58" width="237" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxp-Oq-uI8">
+                                                    <rect key="frame" x="206" y="109" width="30" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="Gv5-bd-bSD"/>
+                                                        <constraint firstAttribute="width" constant="30" id="a0Q-9G-S9k"/>
+                                                    </constraints>
+                                                    <state key="normal" title="RT" image="RetweetGray"/>
+                                                    <connections>
+                                                        <action selector="onRetweetButton:" destination="8db-wL-fnq" eventType="touchUpInside" id="C18-E1-GF6"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDA-VD-URw">
+                                                    <rect key="frame" x="103" y="109" width="26" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="R6N-DB-0dl"/>
+                                                        <constraint firstAttribute="width" constant="26" id="uFf-D1-qXv"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Reply" image="ReplyGray"/>
+                                                    <connections>
+                                                        <action selector="onReplyButton:" destination="8db-wL-fnq" eventType="touchUpInside" id="Z1l-b4-udP"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAi-bF-fs1">
+                                                    <rect key="frame" x="313" y="109" width="26" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="068-d5-ybO"/>
+                                                        <constraint firstAttribute="width" constant="26" id="x0s-qm-pZP"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Heart" image="HeartGray"/>
+                                                    <connections>
+                                                        <action selector="onHeartButton:" destination="8db-wL-fnq" eventType="touchUpInside" id="WjB-JC-Rap"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EGo-7J-6l7" firstAttribute="top" secondItem="M4L-S6-YFY" secondAttribute="bottom" constant="3" id="0O9-cq-xLn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cTH-1q-1kf" secondAttribute="trailing" constant="27" id="7fL-CO-pi3"/>
+                                                <constraint firstItem="M4L-S6-YFY" firstAttribute="leading" secondItem="9fA-pc-bp5" secondAttribute="trailing" constant="8" id="CdW-8G-4iH"/>
+                                                <constraint firstItem="cTH-1q-1kf" firstAttribute="top" secondItem="uDk-Gh-f23" secondAttribute="topMargin" constant="30" id="EnQ-CJ-SXD"/>
+                                                <constraint firstItem="gxp-Oq-uI8" firstAttribute="leading" secondItem="SDA-VD-URw" secondAttribute="trailing" constant="77" id="Eos-Oy-g5X"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EGo-7J-6l7" secondAttribute="trailing" constant="27" id="I5w-Hf-BH0"/>
+                                                <constraint firstItem="zYf-SW-Wz5" firstAttribute="leading" secondItem="M4L-S6-YFY" secondAttribute="trailing" constant="16" id="OV4-7T-BD9"/>
+                                                <constraint firstItem="3o9-dL-YIE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uDk-Gh-f23" secondAttribute="leadingMargin" id="Sdp-vZ-Glk"/>
+                                                <constraint firstItem="zYf-SW-Wz5" firstAttribute="top" secondItem="3o9-dL-YIE" secondAttribute="bottom" constant="2" id="TMD-WW-NF0"/>
+                                                <constraint firstItem="M4L-S6-YFY" firstAttribute="top" secondItem="3o9-dL-YIE" secondAttribute="bottom" constant="2" id="Tet-e2-ILu"/>
+                                                <constraint firstItem="3o9-dL-YIE" firstAttribute="top" secondItem="uDk-Gh-f23" secondAttribute="topMargin" constant="7" id="YxP-ze-Q3W"/>
+                                                <constraint firstItem="EGo-7J-6l7" firstAttribute="leading" secondItem="9fA-pc-bp5" secondAttribute="trailing" constant="8" id="dMJ-7X-ALw"/>
+                                                <constraint firstItem="cTH-1q-1kf" firstAttribute="leading" secondItem="zYf-SW-Wz5" secondAttribute="trailing" constant="38" id="dsg-TA-Vk1"/>
+                                                <constraint firstItem="gxp-Oq-uI8" firstAttribute="centerY" secondItem="uDk-Gh-f23" secondAttribute="centerY" constant="37.75" id="fan-R9-OtR"/>
+                                                <constraint firstItem="SDA-VD-URw" firstAttribute="top" secondItem="EGo-7J-6l7" secondAttribute="bottom" constant="8" id="hgD-xN-Hsg"/>
+                                                <constraint firstItem="EGo-7J-6l7" firstAttribute="top" secondItem="M4L-S6-YFY" secondAttribute="bottom" constant="3" id="iJW-Lc-drR"/>
+                                                <constraint firstItem="WAi-bF-fs1" firstAttribute="centerY" secondItem="uDk-Gh-f23" secondAttribute="centerY" constant="37.75" id="iXk-e9-f7S"/>
+                                                <constraint firstItem="zYf-SW-Wz5" firstAttribute="leading" secondItem="M4L-S6-YFY" secondAttribute="trailing" constant="16" id="kUK-53-Cgu"/>
+                                                <constraint firstItem="SDA-VD-URw" firstAttribute="centerY" secondItem="uDk-Gh-f23" secondAttribute="centerY" constant="37.75" id="lYe-7r-7Wg"/>
+                                                <constraint firstItem="cTH-1q-1kf" firstAttribute="leading" secondItem="zYf-SW-Wz5" secondAttribute="trailing" constant="38" id="oeD-LN-zcE"/>
+                                                <constraint firstItem="EGo-7J-6l7" firstAttribute="top" secondItem="zYf-SW-Wz5" secondAttribute="bottom" constant="3" id="s0Z-AT-WYI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3o9-dL-YIE" secondAttribute="trailing" constant="112" id="tlm-Qc-929"/>
+                                                <constraint firstItem="WAi-bF-fs1" firstAttribute="leading" secondItem="gxp-Oq-uI8" secondAttribute="trailing" constant="77" id="ued-Tc-5YQ"/>
+                                                <constraint firstItem="9fA-pc-bp5" firstAttribute="top" secondItem="uDk-Gh-f23" secondAttribute="topMargin" constant="25" id="vwo-Pd-GgI"/>
+                                                <constraint firstItem="SDA-VD-URw" firstAttribute="leading" secondItem="uDk-Gh-f23" secondAttribute="leadingMargin" constant="95" id="zHd-UV-EeX"/>
+                                                <constraint firstItem="9fA-pc-bp5" firstAttribute="leading" secondItem="uDk-Gh-f23" secondAttribute="leadingMargin" constant="15" id="zxA-QJ-tHw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="fullNameLabel" destination="M4L-S6-YFY" id="XT1-gv-6UO"/>
+                                            <outlet property="hoursAgoLabel" destination="cTH-1q-1kf" id="Oo3-Mo-Mc3"/>
+                                            <outlet property="retweetLabel" destination="3o9-dL-YIE" id="djZ-Mc-KuL"/>
+                                            <outlet property="tweetBodyLabel" destination="EGo-7J-6l7" id="n9V-pQ-50C"/>
+                                            <outlet property="userImageView" destination="9fA-pc-bp5" id="uAQ-GI-FhC"/>
+                                            <outlet property="userNameLabel" destination="zYf-SW-Wz5" id="Iqc-cA-tg1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSy-kI-GM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2062" y="34"/>
+            <point key="canvasLocation" x="2061.5999999999999" y="33.733133433283363"/>
         </scene>
         <!--Composer View Controller-->
         <scene sceneID="rKO-9W-lab">
@@ -187,4 +309,9 @@
             <point key="canvasLocation" x="2916" y="34"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="HeartGray" width="44" height="39"/>
+        <image name="ReplyGray" width="62" height="47"/>
+        <image name="RetweetGray" width="59" height="65"/>
+    </resources>
 </document>
