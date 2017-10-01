@@ -24,31 +24,13 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func onLoginButton(_ sender: Any) {
-        TwitterClient.sharedInstance.deauthorize() // TODO: Is this still necessary?
-        TwitterClient.sharedInstance.fetchRequestToken(
-            withPath: "oauth/request_token",
-            method: "GET",
-            callbackURL: URL(string: "jitter://oauth/callback"),
-            scope: nil,
-            success: requestTokenSuccess,
-            failure: requestTokenFailure
-        )
-    }
-    private func requestTokenSuccess(requestToken: BDBOAuth1Credential!) {
-        let url = URL(string: "\(baseApiURL)/oauth/authorize?oauth_token=\(requestToken.token!)")
-        UIApplication.shared.open(url!, options: [:], completionHandler: openedTokenUrl)
-    }
-
-    private func openedTokenUrl(success: Bool) -> Void{
-        if success == false {
-            print("Error fetching access token")
-            return
+        TwitterClient.sharedInstance.login(success: {
+            print("I've logged in")
+        }) { (error: Error) in
+            print(error.localizedDescription)
         }
     }
 
-    private func requestTokenFailure(error: Error!) {
-        print(error)
-    }
     /*
     // MARK: - Navigation
 

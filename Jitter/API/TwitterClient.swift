@@ -20,6 +20,47 @@ class TwitterClient: BDBOAuth1SessionManager {
         consumerSecret: consumerSecret
     )
 
+    var loginSuccess: (() -> ())?
+    var loginFailure: ((Error) -> ())?
+
+    // MARK: - Authentication
+    func login(success: @escaping ()-> (), failure: @escaping (Error) -> ()) {
+        loginSuccess = success
+        loginFailure = failure
+        TwitterClient.sharedInstance.deauthorize()
+        TwitterClient.sharedInstance.fetchRequestToken(
+            withPath: "oauth/request_token",
+            method: "GET",
+            callbackURL: URL(string: "jitter://oauth/callback"),
+            scope: nil,
+            success: { (credential: BDBOAuth1Credential?) in
+                let authURL = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(credential!.token as String)")
+                UIApplication.shared.open(authURL!)
+            },
+            failure: { (error: Error!) in
+                print(error!.localizedDescription)
+                self.loginFailure?(error)
+            }
+        )
+    }
+
+    func handleOpenUrl(url: URL) {
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        TwitterClient.sharedInstance.fetchAccessToken(
+            withPath: "oauth/access_token",
+            method: "POST",
+            requestToken: requestToken,
+            success: { (accessToken: BDBOAuth1Credential!) -> Void in
+                self.loginSuccess?()
+            },
+            failure: { (error: Error?) -> Void in
+                print(error?.localizedDescription as Any)
+                self.loginFailure?(error!)
+            }
+        )
+    }
+
+    // MARK: - API Calls
     func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (NSError) -> ()) {
         TwitterClient.sharedInstance.get(
             "1.1/statuses/home_timeline.json",
