@@ -78,14 +78,16 @@ class TwitterClient: BDBOAuth1SessionManager {
 
     // MARK: - API Calls
     func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (NSError) -> ()) {
+        let PAGE_SIZE = 20
         TwitterClient.sharedInstance.get(
             "1.1/statuses/home_timeline.json",
             parameters: nil,
             progress: nil,
             success: { (urlSessionTask: URLSessionTask, result: Any?) in
                 let tweetsDictionary = result as! [NSDictionary]
-                let tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
-                success(tweets)
+                var tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
+                tweets.sort()
+                success(Array(tweets.prefix(PAGE_SIZE)))
         },
             failure: { (urlSessionTask: URLSessionTask?, error: Error) in
                 failure(error as NSError)

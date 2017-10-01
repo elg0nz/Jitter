@@ -70,6 +70,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tweetsTableView" destination="YxB-OD-h8m" id="SmB-RC-abX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSy-kI-GM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

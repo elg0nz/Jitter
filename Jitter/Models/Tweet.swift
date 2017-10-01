@@ -8,10 +8,18 @@
 
 import UIKit
 
-class Tweet: NSObject {
+class Tweet: NSObject, Comparable {
+    static func <(lhs: Tweet, rhs: Tweet) -> Bool {
+        if lhs.timestamp != nil && rhs.timestamp != nil {
+            return lhs.timestamp! > rhs.timestamp!
+        }
+
+        return false
+    }
+
     // TODO: Use String instead
     var text: NSString?
-    var timestamp: NSDate?
+    var timestamp: Date?
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
 
@@ -27,7 +35,7 @@ class Tweet: NSObject {
         if let timestampString = timestampString {
             let formatter = DateFormatter()
             formatter.dateFormat = "EE MMM d HH:mm:ss Z y"
-            timestamp = formatter.date(from: timestampString) as NSDate?
+            timestamp = formatter.date(from: timestampString)
         }
     }
 
