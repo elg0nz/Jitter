@@ -10,6 +10,8 @@ import UIKit
 
 class TweetsViewController: UIViewController, UITableViewDataSource {
     var tweets: [Tweet]!
+    let alertController = UIAlertController(title: "Error", message: "Message", preferredStyle: .alert)
+
     @IBOutlet weak var tweetsTableView: UITableView!
     @IBAction func onLogoutButton(_ sender: Any) {
         TwitterClient.sharedInstance.logout()
@@ -31,31 +33,44 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         return cell
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tweetsTableView.dataSource = self
+    // MARK: - Refreshcontrol
+    @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        self.reloadHomeTweets()
+        refreshControl.endRefreshing()
+    }
+
+    private func reloadHomeTweets() {
         TwitterClient.sharedInstance.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
             self.tweetsTableView.reloadData()
         }) { (error: NSError) in
             print(error.localizedDescription)
+            self.alertController.message = "Could not refresh"
+            self.present(self.alertController, animated: true)
         }
+    }
+
+    private func setRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        tweetsTableView.insertSubview(refreshControl, at: 0)
+    }
+
+    private func setAlertView() {
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in}
+        alertController.addAction(OKAction)
+    }
+
+    // MARK: - View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tweetsTableView.dataSource = self
+        self.reloadHomeTweets()
+        setRefreshControl()
+        setAlertView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
