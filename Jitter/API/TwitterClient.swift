@@ -109,8 +109,15 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
 
-    func createUpdate(text: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
-        let parameters: [String: AnyObject] = ["status": text as AnyObject]
+    func createUpdate(text: String, in_reply_to: Int64?, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        var parameters: [String: String] = ["status": text]
+        if let reply_id = in_reply_to {
+            parameters = [
+                "status": text,
+                "in_reply_to_status_id": String(reply_id)
+            ]
+        }
+
         self.post(
             "1.1/statuses/update.json",
             parameters: parameters,

@@ -199,7 +199,7 @@
         <!--Composer View Controller-->
         <scene sceneID="rKO-9W-lab">
             <objects>
-                <viewController id="vo1-Fd-OTZ" customClass="ComposerViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ComposerViewController" id="vo1-Fd-OTZ" customClass="ComposerViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f3e-XJ-NYA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

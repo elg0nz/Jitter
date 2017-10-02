@@ -26,7 +26,16 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var userImageView: UIImageView!
 
     @IBAction func onReplyButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let composerVC = mainStoryboard.instantiateViewController(withIdentifier: "ComposerViewController") as! ComposerViewController
+
+        if let reply_id = tweet?.id {
+            composerVC.in_reply_id = reply_id
+            self.navigationController?.pushViewController(composerVC, animated: true)
+        } else {
+            self.alertController.message = "Could not find tweet"
+            self.present(self.alertController, animated: true)
+        }
     }
 
     @IBAction func onRetweetButton(_ sender: Any) {
@@ -67,8 +76,14 @@ class TweetDetailViewController: UIViewController {
         }
     }
 
+    private func setAlertView() {
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in}
+        alertController.addAction(OKAction)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setAlertView()
         if let tweet = tweet {
             tweetBodyLabel.text = tweet.text ?? ""
             retweetLabel.text = ""

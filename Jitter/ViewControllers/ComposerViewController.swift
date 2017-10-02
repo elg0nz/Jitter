@@ -10,11 +10,13 @@ import UIKit
 
 class ComposerViewController: UIViewController {
     let alertController = UIAlertController(title: "Error", message: "Message", preferredStyle: .alert)
+    var in_reply_id: Int64?
 
     @IBOutlet weak var textView: UITextView!
     @IBAction func onTweetButton(_ sender: Any) {
         TwitterClient.sharedInstance.createUpdate(
             text: textView.text,
+            in_reply_to: in_reply_id,
             success: {
                 self.dismiss(animated: true, completion: nil)
             },
@@ -40,16 +42,4 @@ class ComposerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
