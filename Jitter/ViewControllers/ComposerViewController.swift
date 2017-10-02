@@ -20,7 +20,7 @@ class ComposerViewController: UIViewController {
             success: {
                 self.dismiss(animated: true, completion: nil)
             },
-            failure: { (error: Error) in
+            failure: { (_: Error) in
                 self.alertController.message = "Could not post update"
                 self.present(self.alertController, animated: true)
             }
@@ -34,7 +34,7 @@ class ComposerViewController: UIViewController {
         super.viewDidLoad()
         textView.becomeFirstResponder()
 
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in}
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (_) in}
         alertController.addAction(OKAction)
     }
 

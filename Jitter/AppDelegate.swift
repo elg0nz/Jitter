@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         if User.currentUser != nil {
@@ -27,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             forName: User.userDidLogoutNotificationName,
             object: nil,
             queue: OperationQueue.main
-        ) { (notification: Notification) in
+        ) { (_: Notification) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
@@ -62,4 +61,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-

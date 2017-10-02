@@ -47,7 +47,7 @@ class TweetDetailViewController: UIViewController {
 
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = "Retweeting..."
-        TwitterClient.sharedInstance.retweet(id: tweet.id!, success: { (tweet: Tweet) in
+        TwitterClient.sharedInstance.retweet(id: tweet.id!, success: { (_: Tweet) in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.dismiss(animated: true, completion: nil)
         }) { (error: Error) in
@@ -66,7 +66,7 @@ class TweetDetailViewController: UIViewController {
 
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = "Hearting..."
-        TwitterClient.sharedInstance.fave(id: tweet.id!, success: { (tweet: Tweet) in
+        TwitterClient.sharedInstance.fave(id: tweet.id!, success: { (_: Tweet) in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.dismiss(animated: true, completion: nil)
         }) { (error: Error) in
@@ -77,7 +77,7 @@ class TweetDetailViewController: UIViewController {
     }
 
     private func setAlertView() {
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in}
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (_) in}
         alertController.addAction(OKAction)
     }
 

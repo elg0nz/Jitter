@@ -20,11 +20,11 @@ class TwitterClient: BDBOAuth1SessionManager {
         consumerSecret: consumerSecret
     )
 
-    var loginSuccess: (() -> ())?
-    var loginFailure: ((Error) -> ())?
+    var loginSuccess: (() -> Void)?
+    var loginFailure: ((Error) -> Void)?
 
     // MARK: - Authentication
-    func login(success: @escaping ()-> (), failure: @escaping (Error) -> ()) {
+    func login(success: @escaping ()-> Void, failure: @escaping (Error) -> Void) {
         loginSuccess = success
         loginFailure = failure
         TwitterClient.sharedInstance.deauthorize()
@@ -56,10 +56,9 @@ class TwitterClient: BDBOAuth1SessionManager {
             withPath: "oauth/access_token",
             method: "POST",
             requestToken: requestToken,
-            success: { (accessToken: BDBOAuth1Credential!) -> Void in
+            success: { (_: BDBOAuth1Credential!) -> Void in
                 self.currentAccount(
                     success: { (user: User) in
-                        print(user)
                         User.currentUser = user
                         self.loginSuccess?()
                     },
@@ -77,7 +76,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
 
     // MARK: - API Calls
-    func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (NSError) -> ()) {
+    func homeTimeline(success: @escaping ([Tweet]) -> Void, failure: @escaping (NSError) -> Void) {
         let PAGE_SIZE = 20
         TwitterClient.sharedInstance.get(
             "1.1/statuses/home_timeline.json",
@@ -89,12 +88,12 @@ class TwitterClient: BDBOAuth1SessionManager {
                 tweets.sort()
                 success(Array(tweets.prefix(PAGE_SIZE)))
         },
-            failure: { (urlSessionTask: URLSessionTask?, error: Error) in
+            failure: { (_: URLSessionTask?, error: Error) in
                 failure(error as NSError)
         })
     }
 
-    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+    func currentAccount(success: @escaping (User) -> Void, failure: @escaping (Error) -> Void) {
         get(
             "1.1/account/verify_credentials.json",
             parameters: nil,
@@ -104,12 +103,12 @@ class TwitterClient: BDBOAuth1SessionManager {
                 let user = User(dictionary: credentials)
                 success(user)
         },
-            failure: { (urlSessionTask: URLSessionTask?, error: Error) in
+            failure: { (_: URLSessionTask?, error: Error) in
                 failure(error)
         })
     }
 
-    func createUpdate(text: String, in_reply_to: Int64?, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    func createUpdate(text: String, in_reply_to: Int64?, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
         var parameters: [String: String] = ["status": text]
         if let reply_id = in_reply_to {
             parameters = [
@@ -122,17 +121,17 @@ class TwitterClient: BDBOAuth1SessionManager {
             "1.1/statuses/update.json",
             parameters: parameters,
             progress: nil,
-            success: { (task: URLSessionDataTask, response: Any?) in
+            success: { (task: URLSessionDataTask, _: Any?) in
                 success()
             },
-            failure: { (task: URLSessionDataTask?, error: Error) in
+            failure: { (_: URLSessionDataTask?, error: Error) in
                 print(error.localizedDescription)
                 failure(error)
             }
         )
     }
 
-    func fave(id: Int64, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+    func fave(id: Int64, success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
         let stringId = String(id)
         let parameters: [String: String] = ["id": stringId]
         self.post(
@@ -145,14 +144,14 @@ class TwitterClient: BDBOAuth1SessionManager {
                 tweet.favorited = true
                 success(tweet)
             },
-            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
+            failure: { (_: URLSessionDataTask?, error: Error) -> Void in
                 print(error.localizedDescription)
                 failure(error)
             }
         )
     }
 
-    func retweet(id: Int64, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+    func retweet(id: Int64, success: @escaping (Tweet) -> Void, failure: @escaping (Error) -> Void) {
         let stringId = String(id)
         self.post(
             "1.1/statuses/retweet/\(stringId).json",
@@ -164,7 +163,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 tweet.favorited = true
                 success(tweet)
         },
-            failure: { (task: URLSessionDataTask?, error: Error) -> Void in
+            failure: { (_: URLSessionDataTask?, error: Error) -> Void in
                 print(error.localizedDescription)
                 failure(error)
         }

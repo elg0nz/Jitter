@@ -57,7 +57,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     }
 
     private func setAlertView() {
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in}
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (_) in}
         alertController.addAction(OKAction)
     }
 
