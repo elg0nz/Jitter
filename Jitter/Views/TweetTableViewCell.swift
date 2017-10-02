@@ -17,6 +17,9 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var hoursAgoLabel: UILabel!
     @IBOutlet weak var tweetBodyLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var replyCount: UILabel!
+    @IBOutlet weak var retweetCount: UILabel!
+    @IBOutlet weak var likeCount: UILabel!
 
     func loadData(tweet: Tweet) {
         self.tweet = tweet
@@ -27,8 +30,13 @@ class TweetTableViewCell: UITableViewCell {
             userImageView.setImageWith(user.profileUrl!)
             userNameLabel.text = user.screenname
             fullNameLabel.text = user.name
+            self.userImageView.layer.cornerRadius = 10
+            self.userImageView.clipsToBounds = true
         }
         hoursAgoLabel.text = tweet.timestamp?.timeAgo()
+        replyCount.text = String(tweet.replyCount)
+        retweetCount.text = String(tweet.retweetCount)
+        likeCount.text = String(tweet.favoritesCount)
     }
 
     override func awakeFromNib() {
