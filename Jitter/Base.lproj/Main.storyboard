@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,9 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUC-EL-TQ2">
-                                <rect key="frame" x="91" y="292" width="192" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JitterBackground" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V1A-9w-DVk">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUC-EL-TQ2">
+                                <rect key="frame" x="110" y="391" width="143" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Login with Twitter">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -29,11 +31,29 @@
                                     <action selector="onLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b5H-90-m2D"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TwitterLogo" translatesAutoresizingMaskIntoConstraints="NO" id="CPQ-nC-uP9">
+                                <rect key="frame" x="110" y="217" width="154" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="WSb-hg-g2X"/>
+                                    <constraint firstAttribute="width" constant="154" id="XeZ-K2-dBD"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="CPQ-nC-uP9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="153" id="2UX-n7-elV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SUC-EL-TQ2" secondAttribute="trailing" constant="122" id="6rj-NT-pfC"/>
+                            <constraint firstItem="CPQ-nC-uP9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="GKO-W9-njl"/>
+                            <constraint firstItem="SUC-EL-TQ2" firstAttribute="leading" secondItem="CPQ-nC-uP9" secondAttribute="leading" id="IqG-8j-N4O"/>
+                            <constraint firstItem="V1A-9w-DVk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Skg-EV-cXU"/>
+                            <constraint firstItem="SUC-EL-TQ2" firstAttribute="top" secondItem="CPQ-nC-uP9" secondAttribute="bottom" constant="49" id="TdQ-Tz-ae2"/>
+                            <constraint firstItem="V1A-9w-DVk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VAR-TM-jkd"/>
+                            <constraint firstAttribute="bottom" secondItem="V1A-9w-DVk" secondAttribute="bottom" id="pzc-xg-RIM"/>
+                            <constraint firstAttribute="trailing" secondItem="V1A-9w-DVk" secondAttribute="trailing" id="qHa-S6-bWE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="R3H-B3-f0C"/>
+                    <navigationItem key="navigationItem" title="Login" id="R3H-B3-f0C"/>
                     <connections>
                         <segue destination="0fz-SP-8bL" kind="presentation" identifier="loginSegue" id="U5B-Ua-KD9"/>
                     </connections>
@@ -105,7 +125,7 @@
                                                     <rect key="frame" x="206" y="109" width="30" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="Gv5-bd-bSD"/>
-                                                        <constraint firstAttribute="width" constant="30" id="a0Q-9G-S9k"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="30" id="a0Q-9G-S9k"/>
                                                     </constraints>
                                                     <state key="normal" title="RT" image="RetweetGray"/>
                                                 </button>
@@ -113,7 +133,7 @@
                                                     <rect key="frame" x="103" y="109" width="26" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="R6N-DB-0dl"/>
-                                                        <constraint firstAttribute="width" constant="26" id="uFf-D1-qXv"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="26" id="uFf-D1-qXv"/>
                                                     </constraints>
                                                     <state key="normal" title="Reply" image="ReplyGray"/>
                                                 </button>
@@ -121,7 +141,7 @@
                                                     <rect key="frame" x="313" y="109" width="26" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="068-d5-ybO"/>
-                                                        <constraint firstAttribute="width" constant="26" id="x0s-qm-pZP"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="26" id="x0s-qm-pZP"/>
                                                     </constraints>
                                                     <state key="normal" title="Heart" image="HeartGray"/>
                                                 </button>
@@ -146,10 +166,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdO-C7-lcs">
-                                                    <rect key="frame" x="84" y="110" width="11" height="21"/>
+                                                    <rect key="frame" x="87" y="110" width="8" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="4wR-1H-00m"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="11" id="qr9-hT-eQg"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="11" id="qr9-hT-eQg"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -158,6 +178,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EGo-7J-6l7" firstAttribute="top" secondItem="M4L-S6-YFY" secondAttribute="bottom" constant="3" id="0O9-cq-xLn"/>
+                                                <constraint firstAttribute="trailing" secondItem="WAi-bF-fs1" secondAttribute="trailing" constant="36" id="2Vs-gH-Pd5"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="jte-In-JV9" secondAttribute="bottom" constant="25.5" id="4Zq-06-WIr"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="vwh-E9-nEE" secondAttribute="bottom" constant="25.5" id="4h4-Rc-TBQ"/>
                                                 <constraint firstItem="EGo-7J-6l7" firstAttribute="top" secondItem="cTH-1q-1kf" secondAttribute="bottom" constant="3" id="62b-DC-btT"/>
@@ -167,11 +188,14 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="EGo-7J-6l7" secondAttribute="trailing" constant="27" id="I5w-Hf-BH0"/>
                                                 <constraint firstItem="SDA-VD-URw" firstAttribute="leading" secondItem="QdO-C7-lcs" secondAttribute="trailing" constant="8" id="OR9-SC-6cs"/>
                                                 <constraint firstItem="zYf-SW-Wz5" firstAttribute="leading" secondItem="M4L-S6-YFY" secondAttribute="trailing" constant="16" id="OV4-7T-BD9"/>
+                                                <constraint firstItem="jte-In-JV9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uDk-Gh-f23" secondAttribute="leading" constant="20" symbolic="YES" id="Pjl-Ke-AbL"/>
                                                 <constraint firstItem="3o9-dL-YIE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uDk-Gh-f23" secondAttribute="leadingMargin" id="Sdp-vZ-Glk"/>
                                                 <constraint firstItem="zYf-SW-Wz5" firstAttribute="top" secondItem="3o9-dL-YIE" secondAttribute="bottom" constant="2" id="TMD-WW-NF0"/>
                                                 <constraint firstItem="M4L-S6-YFY" firstAttribute="top" secondItem="3o9-dL-YIE" secondAttribute="bottom" constant="2" id="Tet-e2-ILu"/>
+                                                <constraint firstItem="QdO-C7-lcs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uDk-Gh-f23" secondAttribute="leading" constant="20" symbolic="YES" id="WZH-Du-F6j"/>
                                                 <constraint firstItem="3o9-dL-YIE" firstAttribute="top" secondItem="uDk-Gh-f23" secondAttribute="topMargin" constant="7" id="YxP-ze-Q3W"/>
                                                 <constraint firstItem="cTH-1q-1kf" firstAttribute="top" secondItem="uDk-Gh-f23" secondAttribute="topMargin" constant="30" id="Zkv-LI-oFd"/>
+                                                <constraint firstItem="cTH-1q-1kf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uDk-Gh-f23" secondAttribute="leadingMargin" id="a5v-It-4Kn"/>
                                                 <constraint firstItem="WAi-bF-fs1" firstAttribute="leading" secondItem="jte-In-JV9" secondAttribute="trailing" constant="8" id="cWW-ga-w2o"/>
                                                 <constraint firstItem="EGo-7J-6l7" firstAttribute="leading" secondItem="9fA-pc-bp5" secondAttribute="trailing" constant="8" id="dMJ-7X-ALw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="cTH-1q-1kf" secondAttribute="trailing" constant="27" id="enC-zW-pLx"/>
@@ -180,11 +204,13 @@
                                                 <constraint firstItem="EGo-7J-6l7" firstAttribute="top" secondItem="M4L-S6-YFY" secondAttribute="bottom" constant="3" id="iJW-Lc-drR"/>
                                                 <constraint firstItem="WAi-bF-fs1" firstAttribute="centerY" secondItem="uDk-Gh-f23" secondAttribute="centerY" constant="37.75" id="iXk-e9-f7S"/>
                                                 <constraint firstItem="gxp-Oq-uI8" firstAttribute="leading" secondItem="vwh-E9-nEE" secondAttribute="trailing" constant="8" id="kFX-tF-zeo"/>
-                                                <constraint firstItem="zYf-SW-Wz5" firstAttribute="leading" secondItem="M4L-S6-YFY" secondAttribute="trailing" constant="16" id="kUK-53-Cgu"/>
+                                                <constraint firstItem="zYf-SW-Wz5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="M4L-S6-YFY" secondAttribute="trailing" symbolic="YES" id="kUK-53-Cgu"/>
+                                                <constraint firstItem="vwh-E9-nEE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uDk-Gh-f23" secondAttribute="leading" constant="20" symbolic="YES" id="lHD-cb-apO"/>
                                                 <constraint firstItem="SDA-VD-URw" firstAttribute="centerY" secondItem="uDk-Gh-f23" secondAttribute="centerY" constant="37.75" id="lYe-7r-7Wg"/>
                                                 <constraint firstItem="EGo-7J-6l7" firstAttribute="top" secondItem="zYf-SW-Wz5" secondAttribute="bottom" constant="3" id="s0Z-AT-WYI"/>
+                                                <constraint firstAttribute="trailing" secondItem="zYf-SW-Wz5" secondAttribute="trailing" constant="91" id="s6N-td-9mW"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="3o9-dL-YIE" secondAttribute="trailing" constant="112" id="tlm-Qc-929"/>
-                                                <constraint firstItem="WAi-bF-fs1" firstAttribute="leading" secondItem="gxp-Oq-uI8" secondAttribute="trailing" constant="77" id="ued-Tc-5YQ"/>
+                                                <constraint firstItem="WAi-bF-fs1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gxp-Oq-uI8" secondAttribute="trailing" symbolic="YES" id="ued-Tc-5YQ"/>
                                                 <constraint firstItem="9fA-pc-bp5" firstAttribute="top" secondItem="uDk-Gh-f23" secondAttribute="topMargin" constant="25" id="vwo-Pd-GgI"/>
                                                 <constraint firstItem="SDA-VD-URw" firstAttribute="leading" secondItem="uDk-Gh-f23" secondAttribute="leadingMargin" constant="95" id="zHd-UV-EeX"/>
                                                 <constraint firstItem="9fA-pc-bp5" firstAttribute="leading" secondItem="uDk-Gh-f23" secondAttribute="leadingMargin" constant="15" id="zxA-QJ-tHw"/>
@@ -490,11 +516,12 @@
     </scenes>
     <resources>
         <image name="HeartGray" width="44" height="39"/>
+        <image name="JitterBackground" width="381" height="743"/>
         <image name="ReplyGray" width="62" height="47"/>
         <image name="RetweetGray" width="59" height="65"/>
+        <image name="TwitterLogo" width="616" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6x0-AB-kY1"/>
-        <segue reference="sQt-8j-ipe"/>
+        <segue reference="U5B-Ua-KD9"/>
     </inferredMetricsTieBreakers>
 </document>
