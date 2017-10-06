@@ -392,22 +392,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="Alc-j3-NKc"/>
                                     <constraint firstAttribute="height" constant="22" id="UgO-AV-seH"/>
-                                    <constraint firstAttribute="width" constant="26" id="bUz-2h-g9Y"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="26" id="bUz-2h-g9Y"/>
                                 </constraints>
                                 <state key="normal" title="Reply" image="ReplyGray"/>
                                 <connections>
                                     <action selector="onReplyButton:" destination="Qbp-FB-VbG" eventType="touchUpInside" id="kbx-GB-D8q"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9D-6Z-rkn">
-                                <rect key="frame" x="333" y="227" width="26" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="Nbb-Xq-zdc"/>
-                                    <constraint firstAttribute="width" constant="26" id="oE2-9E-biu"/>
-                                </constraints>
-                                <state key="normal" title="Heart" image="HeartGray"/>
-                                <connections>
-                                    <action selector="onHeartButton:" destination="Qbp-FB-VbG" eventType="touchUpInside" id="Ijt-bI-KMJ"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mBe-oI-m5O">
@@ -441,11 +430,22 @@
                                 <rect key="frame" x="214" y="227" width="26" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="XeM-Up-Div"/>
-                                    <constraint firstAttribute="width" constant="26" id="uvz-Xi-Z3l"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="26" id="uvz-Xi-Z3l"/>
                                 </constraints>
                                 <state key="normal" title="RT" image="RetweetGray"/>
                                 <connections>
                                     <action selector="onRetweetButton:" destination="Qbp-FB-VbG" eventType="touchUpInside" id="aAc-94-FsZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9D-6Z-rkn">
+                                <rect key="frame" x="333" y="227" width="26" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Nbb-Xq-zdc"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="26" id="oE2-9E-biu"/>
+                                </constraints>
+                                <state key="normal" title="Heart" image="HeartGray"/>
+                                <connections>
+                                    <action selector="onHeartButton:" destination="Qbp-FB-VbG" eventType="touchUpInside" id="Ijt-bI-KMJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -453,10 +453,11 @@
                         <constraints>
                             <constraint firstItem="Mhm-xN-dAZ" firstAttribute="trailing" secondItem="Vab-HZ-0sZ" secondAttribute="trailing" constant="16" id="31R-wl-sbT"/>
                             <constraint firstItem="Vab-HZ-0sZ" firstAttribute="leading" secondItem="mBe-oI-m5O" secondAttribute="trailing" constant="18" id="4zj-BD-KSR"/>
-                            <constraint firstItem="9CX-fl-IUS" firstAttribute="leading" secondItem="GY7-5X-Amc" secondAttribute="trailing" constant="92" id="Eia-JW-ofr"/>
+                            <constraint firstItem="9CX-fl-IUS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GY7-5X-Amc" secondAttribute="trailing" constant="8" symbolic="YES" id="Eia-JW-ofr"/>
                             <constraint firstItem="mBe-oI-m5O" firstAttribute="leading" secondItem="Mhm-xN-dAZ" secondAttribute="leading" constant="6" id="FyJ-G6-A0l"/>
                             <constraint firstItem="GY7-5X-Amc" firstAttribute="top" secondItem="Vab-HZ-0sZ" secondAttribute="bottom" constant="8" id="G7X-Fz-SiZ"/>
                             <constraint firstItem="v9D-6Z-rkn" firstAttribute="top" secondItem="GY7-5X-Amc" secondAttribute="top" id="KEh-bw-2qp"/>
+                            <constraint firstItem="v9D-6Z-rkn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xjp-kT-ByI" secondAttribute="leading" constant="20" symbolic="YES" id="OQn-SK-uVs"/>
                             <constraint firstItem="mCw-j8-uEG" firstAttribute="leading" secondItem="YDe-t6-e9L" secondAttribute="trailing" constant="40" id="Q0y-HW-NAd"/>
                             <constraint firstItem="Vab-HZ-0sZ" firstAttribute="top" secondItem="YDe-t6-e9L" secondAttribute="bottom" constant="8" id="QmD-Ac-wbz"/>
                             <constraint firstItem="Mhm-xN-dAZ" firstAttribute="trailing" secondItem="mCw-j8-uEG" secondAttribute="trailing" constant="42" id="RjQ-B9-4ja"/>
@@ -467,6 +468,7 @@
                             <constraint firstItem="Mhm-xN-dAZ" firstAttribute="trailing" secondItem="be4-Cd-EdZ" secondAttribute="trailing" constant="127" id="fBu-Vq-0Da"/>
                             <constraint firstItem="YDe-t6-e9L" firstAttribute="leading" secondItem="get-23-yIf" secondAttribute="trailing" constant="14" id="ffn-au-Yl0"/>
                             <constraint firstItem="YDe-t6-e9L" firstAttribute="top" secondItem="be4-Cd-EdZ" secondAttribute="bottom" constant="2.5" id="i9w-j2-Phz"/>
+                            <constraint firstAttribute="trailing" secondItem="9CX-fl-IUS" secondAttribute="trailing" constant="135" id="jIA-j4-G3A"/>
                             <constraint firstItem="get-23-yIf" firstAttribute="leading" secondItem="mBe-oI-m5O" secondAttribute="trailing" constant="18" id="l7w-v1-x4N"/>
                             <constraint firstItem="be4-Cd-EdZ" firstAttribute="leading" secondItem="mBe-oI-m5O" secondAttribute="trailing" constant="18" id="mL5-lN-Lc3"/>
                             <constraint firstItem="Mhm-xN-dAZ" firstAttribute="trailing" secondItem="v9D-6Z-rkn" secondAttribute="trailing" constant="16" id="pd5-ko-chT"/>
@@ -522,6 +524,6 @@
         <image name="TwitterLogo" width="616" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U5B-Ua-KD9"/>
+        <segue reference="sQt-8j-ipe"/>
     </inferredMetricsTieBreakers>
 </document>
