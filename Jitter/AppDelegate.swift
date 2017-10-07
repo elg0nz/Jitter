@@ -16,8 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let containerVC = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
+
+        let tweetsVC = storyboard.instantiateViewController(withIdentifier: "TweetsViewController") as! TweetsViewController
+        tweetsVC.title = "Timeline"
+
+        containerVC.viewControllers = [
+            tweetsVC
+        ]
+        window?.rootViewController = containerVC
+
         if User.currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
             window?.rootViewController = vc
         }
@@ -27,9 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             object: nil,
             queue: OperationQueue.main
         ) { (_: Notification) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateInitialViewController()
-            self.window?.rootViewController = vc
+            self.window?.rootViewController = containerVC
         }
         return true
     }

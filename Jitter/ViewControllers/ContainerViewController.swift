@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
-    var originalLeftMargin: CGFloat!
+class ContainerViewController: UIViewController, UITableViewDataSource {
+    // MARK: - Outlets
 
+    @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var leftMarginConstraint: NSLayoutConstraint!
     @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
@@ -20,13 +21,13 @@ class ContainerViewController: UIViewController {
             originalLeftMargin = leftMarginConstraint.constant
         } else if sender.state == .changed {
             leftMarginConstraint.constant = originalLeftMargin + translation.x
-
         } else if sender.state == .ended {
             let opening = velocity.x > 0
             let openingConstant:CGFloat = view.frame.size.width / 2
 
             if opening {
                 leftMarginConstraint.constant = view.frame.size.width - openingConstant
+                menuTableView.reloadData()
             } else {
                 leftMarginConstraint.constant = 0
             }
@@ -35,26 +36,67 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var contentView: UIView!
 
+    // MARK: - instance variables
+    var originalLeftMargin: CGFloat!
+    private var viewControllerArray: [UIViewController]! = []
+    var viewControllers: [UIViewController]  {
+        get {
+            let immutableCopy = viewControllerArray
+            return immutableCopy!
+        }
+
+        set {
+            viewControllerArray = newValue
+        }
+    }
+
+    var menuViewController: UIViewController! {
+        didSet {
+            view.layoutIfNeeded()
+            menuView.addSubview(menuViewController.view)
+            menuTableView?.reloadData()
+        }
+    }
+
+    var contentViewController: UIViewController! {
+        didSet {
+            view.layoutIfNeeded()
+            contentView.addSubview(contentViewController.view)
+        }
+    }
+
+    // MARK: - UITableViewDataSource
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewControllers.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath)
+        // FIXME: use a reusable cell.
+        let cell = UITableViewCell()
+        configureCell(cell: cell, forRowAt: indexPath)
+        return cell
+    }
+
+    func configureCell(cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.textLabel?.text = viewControllers[indexPath.row].title
+    }
+
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        menuTableView.dataSource = self
+        if viewControllerArray.count > 0 {
+            contentViewController = viewControllerArray.first
+        }
+    }
 
-        // Do any additional setup after loading the view.
+    private func setRootViewController() {
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -65,14 +65,27 @@
         <!--Container View Controller-->
         <scene sceneID="QPc-Mn-grE">
             <objects>
-                <viewController id="YGz-Oe-Kpq" customClass="ContainerViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContainerViewController" id="YGz-Oe-Kpq" customClass="ContainerViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HsV-6l-d8a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upY-iU-XKa" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rks-Ev-aWn">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" red="0.27506530280000002" green="0.55322444439999996" blue="0.89362639190000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="rks-Ev-aWn" secondAttribute="trailing" id="MZX-Jp-mqt"/>
+                                    <constraint firstItem="rks-Ev-aWn" firstAttribute="leading" secondItem="upY-iU-XKa" secondAttribute="leading" id="cQe-lj-qgf"/>
+                                    <constraint firstItem="rks-Ev-aWn" firstAttribute="top" secondItem="upY-iU-XKa" secondAttribute="top" id="mzz-Yn-zms"/>
+                                    <constraint firstAttribute="bottom" secondItem="rks-Ev-aWn" secondAttribute="bottom" id="sAT-8I-pjY"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXL-rN-ivS" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -100,6 +113,7 @@
                     <connections>
                         <outlet property="contentView" destination="xXL-rN-ivS" id="nBp-lq-nuq"/>
                         <outlet property="leftMarginConstraint" destination="qDG-JV-AmJ" id="PdF-Mc-39a"/>
+                        <outlet property="menuTableView" destination="rks-Ev-aWn" id="ztI-cn-igr"/>
                         <outlet property="menuView" destination="upY-iU-XKa" id="gV5-UJ-k2C"/>
                     </connections>
                 </viewController>
@@ -110,12 +124,12 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1728.8" y="-1117.6911544227887"/>
+            <point key="canvasLocation" x="2105" y="-1119"/>
         </scene>
         <!--Tweets View Controller-->
         <scene sceneID="1pJ-dK-BJg">
             <objects>
-                <viewController id="AiT-3a-ajL" customClass="TweetsViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TweetsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AiT-3a-ajL" customClass="TweetsViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QqN-7W-liu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -581,7 +595,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRP-o8-SBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="-1118"/>
+            <point key="canvasLocation" x="930" y="-1118"/>
         </scene>
     </scenes>
     <resources>
