@@ -12,6 +12,7 @@ import BDBOAuth1Manager
 let baseApiURL = "https://api.twitter.com"
 private let consumerKey = "Ql8AFZCnu4WaVteVRT4TEFptU"
 private let consumerSecret = "FSjjgoBKlD39DxPSZKm8P4fTT54hBZjIPuA3FfldkuYlJTIaKe"
+let responseCache = NSCache<NSString, AnyObject>()
 
 class TwitterClient: BDBOAuth1SessionManager {
     static let sharedInstance: TwitterClient = TwitterClient(
@@ -78,19 +79,37 @@ class TwitterClient: BDBOAuth1SessionManager {
     // MARK: - API Calls
     func homeTimeline(success: @escaping ([Tweet]) -> Void, failure: @escaping (NSError) -> Void) {
         let PAGE_SIZE = 20
-        TwitterClient.sharedInstance.get(
-            "1.1/statuses/home_timeline.json",
-            parameters: nil,
-            progress: nil,
-            success: { (urlSessionTask: URLSessionTask, result: Any?) in
-                let tweetsDictionary = result as! [NSDictionary]
-                var tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
-                tweets.sort()
-                success(Array(tweets.prefix(PAGE_SIZE)))
-        },
-            failure: { (_: URLSessionTask?, error: Error) in
-                failure(error as NSError)
-        })
+
+        // TODO: Come up with a more generic way to cache. Maybe by overriding BDBOAuth1SessionManager.get
+        if let cachedVersion = responseCache.object(forKey: "homeTimeline") {
+            var tweets = Tweet.tweetsWithArray(dictionaries: cachedVersion as! [NSDictionary])
+            tweets.sort()
+            success(Array(tweets.prefix(PAGE_SIZE)))
+        } else {
+            TwitterClient.sharedInstance.get(
+                "1.1/statuses/home_timeline.json",
+                parameters: nil,
+                progress: nil,
+                success: { (urlSessionTask: URLSessionTask, result: Any?) in
+                    let tweetsDictionary = result as! [NSDictionary]
+                    responseCache.setObject(tweetsDictionary as AnyObject, forKey: "homeTimeline")
+                    var tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
+                    tweets.sort()
+                    success(Array(tweets.prefix(PAGE_SIZE)))
+                    let five_minutes = 5 * 60
+                    Timer.scheduledTimer(timeInterval: TimeInterval(five_minutes), target: self, selector: #selector(self.clearCache), userInfo: ["key": "homeTimeline"], repeats: false)
+            },
+                failure: { (_: URLSessionTask?, error: Error) in
+                    failure(error as NSError)
+            })
+        }
+    }
+
+    @objc func clearCache(timer: Timer) {
+        let info = timer.userInfo as! Dictionary<String, String>?
+        if let key = info?["key"] {
+            responseCache.removeObject(forKey: key as NSString)
+        }
     }
 
     func currentAccount(success: @escaping (User) -> Void, failure: @escaping (Error) -> Void) {
