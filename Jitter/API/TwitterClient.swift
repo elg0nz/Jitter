@@ -12,7 +12,6 @@ import BDBOAuth1Manager
 let baseApiURL = "https://api.twitter.com"
 private let consumerKey = "Ql8AFZCnu4WaVteVRT4TEFptU"
 private let consumerSecret = "FSjjgoBKlD39DxPSZKm8P4fTT54hBZjIPuA3FfldkuYlJTIaKe"
-let responseCache = NSCache<NSString, AnyObject>()
 
 class TwitterClient: BDBOAuth1SessionManager {
     static let sharedInstance: TwitterClient = TwitterClient(
@@ -92,6 +91,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 progress: nil,
                 success: { (urlSessionTask: URLSessionTask, result: Any?) in
                     let tweetsDictionary = result as! [NSDictionary]
+                    print("fetching homeTimeline")
                     responseCache.setObject(tweetsDictionary as AnyObject, forKey: "homeTimeline")
                     var tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
                     tweets.sort()

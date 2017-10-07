@@ -9,6 +9,8 @@
 import UIKit
 import BDBOAuth1Manager
 
+let responseCache = NSCache<NSString, AnyObject>()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
