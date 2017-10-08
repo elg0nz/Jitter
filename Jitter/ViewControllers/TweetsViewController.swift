@@ -8,8 +8,14 @@
 
 import UIKit
 
+enum TwitterFeedTypes {
+    case home
+    case mentions
+}
+
 class TweetsViewController: UIViewController, UITableViewDataSource {
     var tweets: [Tweet]!
+    public var feedType: TwitterFeedTypes = .home
     let alertController = UIAlertController(title: "Error", message: "Message", preferredStyle: .alert)
 
     @IBOutlet weak var tweetsTableView: UITableView!
@@ -35,8 +41,29 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
 
     // MARK: - Refreshcontrol
     @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        self.reloadHomeTweets()
+        self.reloadTweets()
         refreshControl.endRefreshing()
+    }
+
+    private func reloadTweets() {
+        switch feedType {
+        case .home:
+            self.reloadHomeTweets()
+        case .mentions:
+            self.reloadMentions()
+        }
+    }
+
+
+    private func reloadMentions() {
+        TwitterClient.sharedInstance.mentions(success: { (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tweetsTableView.reloadData()
+        }) { (error: NSError) in
+            print(error.localizedDescription)
+            self.alertController.message = "Could not refresh"
+            self.present(self.alertController, animated: true)
+        }
     }
 
     private func reloadHomeTweets() {
@@ -67,7 +94,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         tweetsTableView.dataSource = self
         tweetsTableView.estimatedRowHeight = 125
 
-        self.reloadHomeTweets()
+        self.reloadTweets()
         setRefreshControl()
         setAlertView()
     }

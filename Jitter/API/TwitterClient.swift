@@ -105,6 +105,37 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
 
+    // TODO: Refactor to remove code duplication
+    func mentions(success: @escaping ([Tweet]) -> Void, failure: @escaping (NSError) -> Void) {
+        let PAGE_SIZE = 20
+        let cacheKey = "mentionsTimeline" as NSString
+
+        // TODO: Come up with a more generic way to cache. Maybe by overriding BDBOAuth1SessionManager.get
+        if let cachedVersion = responseCache.object(forKey: cacheKey) {
+            var tweets = Tweet.tweetsWithArray(dictionaries: cachedVersion as! [NSDictionary])
+            tweets.sort()
+            success(Array(tweets.prefix(PAGE_SIZE)))
+        } else {
+            TwitterClient.sharedInstance.get(
+                "1.1/statuses/mentions_timeline.json",
+                parameters: nil,
+                progress: nil,
+                success: { (urlSessionTask: URLSessionTask, result: Any?) in
+                    let tweetsDictionary = result as! [NSDictionary]
+                    print("fetching mentions")
+                    responseCache.setObject(tweetsDictionary as AnyObject, forKey: cacheKey)
+                    var tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
+                    tweets.sort()
+                    success(Array(tweets.prefix(PAGE_SIZE)))
+                    let five_minutes = 5 * 60
+                    Timer.scheduledTimer(timeInterval: TimeInterval(five_minutes), target: self, selector: #selector(self.clearCache), userInfo: ["key": cacheKey], repeats: false)
+            },
+                failure: { (_: URLSessionTask?, error: Error) in
+                    failure(error as NSError)
+            })
+        }
+    }
+
     @objc func clearCache(timer: Timer) {
         let info = timer.userInfo as! Dictionary<String, String>?
         if let key = info?["key"] {
