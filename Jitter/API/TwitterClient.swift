@@ -153,7 +153,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 progress: nil,
                 success: { (urlSessionTask: URLSessionTask, result: Any?) in
                     let tweetsDictionary = result as! [NSDictionary]
-                    print("fetching mentions")
+                    print("fetching user timeline")
                     responseCache.setObject(tweetsDictionary as AnyObject, forKey: cacheKey)
                     var tweets = Tweet.tweetsWithArray(dictionaries: tweetsDictionary)
                     tweets.sort()

@@ -22,7 +22,9 @@ class User: NSObject {
 
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
-        name = dictionary["name"] as? String
+        if let dictName = dictionary["name"] as? String {
+            name = dictName
+        }
         if let nick = dictionary["screen_name"] as? String {
             screenname = "@\(nick)"
         }
@@ -31,13 +33,13 @@ class User: NSObject {
             profileUrl = URL(string: profileUrlString)
         }
         tagline = dictionary["description"] as? String
-        let profileBackgroundUrlString = dictionary["profile_background_image_url_https"] as? String
+        let profileBackgroundUrlString = dictionary["profile_banner_url"] as? String
         if let profileBackgroundUrlString = profileBackgroundUrlString {
             profileBackgroundImage = URL(string: profileBackgroundUrlString)
         }
         tweetsCount = (dictionary["statuses_count"] as? Int) ?? 0
-        followersCount = (dictionary["statuses_count"] as? Int) ?? 0
-        followingCount = (dictionary["statuses_count"] as? Int) ?? 0
+        followersCount = (dictionary["followers_count"] as? Int) ?? 0
+        followingCount = (dictionary["friends_count"] as? Int) ?? 0
     }
 
     static private var _currentUser: User?

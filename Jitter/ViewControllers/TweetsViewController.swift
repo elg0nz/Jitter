@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 enum TwitterFeedTypes {
     case home
@@ -51,6 +52,24 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if feedType == .profile {
             let cell = tweetsTableView.dequeueReusableCell(withIdentifier: "UserTableViewCell") as! UserTableViewCell
+            if let currentUser = User.currentUser {
+                cell.userName.text = currentUser.screenname
+                if let fullName = currentUser.name {
+                    cell.fullName.text = fullName
+                }
+                cell.fullName.text = "WanderTap"
+                cell.followersCount.text = "\(currentUser.followersCount)"
+                cell.followingCount.text = "\(currentUser.followingCount)"
+                cell.tweetsCount.text = "\(currentUser.tweetsCount)"
+                if let bgImgUrl = currentUser.profileBackgroundImage {
+                    cell.backgroundImage.setImageWith(bgImgUrl)
+                } else {
+                    cell.backgroundImage.image = UIImage(named: "JitterBackground")
+                }
+                if let imgUrl = currentUser.profileUrl {
+                    cell.profileImage.setImageWith(imgUrl)
+                }
+            }
             return cell
         }
         return nil
