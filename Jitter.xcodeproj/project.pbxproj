@@ -11,6 +11,8 @@
 		920D6C111F80202B0033CF6B /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D6C101F80202B0033CF6B /* Tweet.swift */; };
 		920D6C131F8028EE0033CF6B /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D6C121F8028EE0033CF6B /* TwitterClient.swift */; };
 		920D6C151F8076D50033CF6B /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D6C141F8076D50033CF6B /* TweetsViewController.swift */; };
+		9229973B1F8ABB1A00B6C94F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922997391F8ABB1A00B6C94F /* UserTableViewCell.swift */; };
+		9229973C1F8ABB1A00B6C94F /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9229973A1F8ABB1A00B6C94F /* UserTableViewCell.xib */; };
 		924357D41F870FB300F72BAA /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924357D31F870FB300F72BAA /* ContainerViewController.swift */; };
 		92479B2A1F89C70200381B8E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92479B291F89C70200381B8E /* MenuViewController.swift */; };
 		925ED29A1F819560003974C7 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925ED2991F819560003974C7 /* DateExtensions.swift */; };
@@ -32,6 +34,8 @@
 		920D6C101F80202B0033CF6B /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		920D6C121F8028EE0033CF6B /* TwitterClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		920D6C141F8076D50033CF6B /* TweetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
+		922997391F8ABB1A00B6C94F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		9229973A1F8ABB1A00B6C94F /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		924357D31F870FB300F72BAA /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		92479B291F89C70200381B8E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		925ED2991F819560003974C7 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				928CBEB61F816E1000CECA7A /* TweetTableViewCell.swift */,
+				922997391F8ABB1A00B6C94F /* UserTableViewCell.swift */,
+				9229973A1F8ABB1A00B6C94F /* UserTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9229973C1F8ABB1A00B6C94F /* UserTableViewCell.xib in Resources */,
 				926452481F79EAB900F74274 /* LaunchScreen.storyboard in Resources */,
 				926452451F79EAB900F74274 /* Assets.xcassets in Resources */,
 				926452431F79EAB900F74274 /* Main.storyboard in Resources */,
@@ -295,6 +302,7 @@
 				925ED29A1F819560003974C7 /* DateExtensions.swift in Sources */,
 				928CBEB41F80CC4C00CECA7A /* ComposerViewController.swift in Sources */,
 				924357D41F870FB300F72BAA /* ContainerViewController.swift in Sources */,
+				9229973B1F8ABB1A00B6C94F /* UserTableViewCell.swift in Sources */,
 				926F30061F7B356400495992 /* LoginViewController.swift in Sources */,
 				920D6C151F8076D50033CF6B /* TweetsViewController.swift in Sources */,
 				9264523E1F79EAB900F74274 /* AppDelegate.swift in Sources */,

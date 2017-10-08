@@ -13,6 +13,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     private var tweetsVC: UIViewController!
     private var mentionsVC: TweetsViewController!
+    private var profileVC: TweetsViewController!
 
     var viewControllers: [UIViewController] = []
     var containerVC : ContainerViewController?
@@ -31,6 +32,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         mentionsVC.title = "Mentions"
         mentionsVC.feedType = TwitterFeedTypes.mentions
         viewControllers.append(mentionsVC)
+
+        profileVC = storyboard.instantiateViewController(withIdentifier: "TweetsViewController") as! TweetsViewController
+        profileVC.title = "Profile"
+        profileVC.feedType = TwitterFeedTypes.profile
+        viewControllers.append(profileVC)
 
         tableView.reloadData()
         super.viewDidLoad()
