@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
         containerVC.menuViewController = menuVC
         menuVC.containerVC = containerVC
-        let tweetsVC = storyboard.instantiateViewController(withIdentifier: "TweetsViewController") as! TweetsViewController
+        let tweetsVC = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
         containerVC.contentViewController = tweetsVC
 
         window?.rootViewController = containerVC

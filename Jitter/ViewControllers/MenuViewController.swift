@@ -21,7 +21,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        tweetsVC = storyboard.instantiateViewController(withIdentifier: "TweetsViewController")
+        tweetsVC = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
         tweetsVC.title = "Timeline"
         viewControllers.append(tweetsVC)
         containerVC?.contentViewController = tweetsVC
