@@ -13,7 +13,7 @@
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,6 +29,7 @@
                                 </state>
                                 <connections>
                                     <action selector="onLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b5H-90-m2D"/>
+                                    <segue destination="TTa-8j-c65" kind="show" identifier="loginSegue" id="eYb-3J-u01"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TwitterLogo" translatesAutoresizingMaskIntoConstraints="NO" id="CPQ-nC-uP9">
@@ -54,13 +55,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="R3H-B3-f0C"/>
-                    <connections>
-                        <segue destination="0fz-SP-8bL" kind="presentation" identifier="loginSegue" id="U5B-Ua-KD9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="33.733133433283363"/>
+            <point key="canvasLocation" x="-495" y="48"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="QPc-Mn-grE">
@@ -72,24 +70,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upY-iU-XKa" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rks-Ev-aWn">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <color key="backgroundColor" red="0.27506530280000002" green="0.55322444439999996" blue="0.89362639190000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="rks-Ev-aWn" secondAttribute="trailing" id="MZX-Jp-mqt"/>
-                                    <constraint firstItem="rks-Ev-aWn" firstAttribute="leading" secondItem="upY-iU-XKa" secondAttribute="leading" id="cQe-lj-qgf"/>
-                                    <constraint firstItem="rks-Ev-aWn" firstAttribute="top" secondItem="upY-iU-XKa" secondAttribute="top" id="mzz-Yn-zms"/>
-                                    <constraint firstAttribute="bottom" secondItem="rks-Ev-aWn" secondAttribute="bottom" id="sAT-8I-pjY"/>
-                                </constraints>
+                                <color key="backgroundColor" red="0.27506530280000002" green="0.55322444439999996" blue="0.89362639190000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xXL-rN-ivS" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="36C-YP-S2D" appends="YES" id="w6a-Ah-Y0w"/>
@@ -113,7 +98,6 @@
                     <connections>
                         <outlet property="contentView" destination="xXL-rN-ivS" id="nBp-lq-nuq"/>
                         <outlet property="leftMarginConstraint" destination="qDG-JV-AmJ" id="PdF-Mc-39a"/>
-                        <outlet property="menuTableView" destination="rks-Ev-aWn" id="ztI-cn-igr"/>
                         <outlet property="menuView" destination="upY-iU-XKa" id="gV5-UJ-k2C"/>
                     </connections>
                 </viewController>
@@ -325,6 +309,49 @@
             </objects>
             <point key="canvasLocation" x="2061.5999999999999" y="33.733133433283363"/>
         </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="sHf-ca-Eyt">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wq4-5F-Qgh" customClass="MenuViewController" customModule="Jitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Ja-bZ-KKv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZdQ-cr-LfO">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MenuCell" selectionStyle="default" indentationWidth="10" id="Vrl-Lc-Y6Z">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vrl-Lc-Y6Z" id="VRS-D5-Aa7">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.27506530280000002" green="0.55322444439999996" blue="0.89362639190000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZdQ-cr-LfO" firstAttribute="trailing" secondItem="0Ja-bZ-KKv" secondAttribute="trailingMargin" id="As6-Rk-wek"/>
+                            <constraint firstItem="ZdQ-cr-LfO" firstAttribute="leading" secondItem="0Ja-bZ-KKv" secondAttribute="leadingMargin" id="cvg-dp-W8k"/>
+                            <constraint firstItem="ZdQ-cr-LfO" firstAttribute="top" secondItem="0Ja-bZ-KKv" secondAttribute="topMargin" id="eaO-gh-dWG"/>
+                            <constraint firstItem="ZdQ-cr-LfO" firstAttribute="bottom" secondItem="0Ja-bZ-KKv" secondAttribute="bottomMargin" id="xpF-wT-X45"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oHr-5r-r9y"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="R2d-3i-c1n"/>
+                    <connections>
+                        <outlet property="tableView" destination="ZdQ-cr-LfO" id="Bc7-5f-VQU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fjP-8v-TRk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3196" y="-1119"/>
+        </scene>
         <!--Composer View Controller-->
         <scene sceneID="rKO-9W-lab">
             <objects>
@@ -408,7 +435,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jUh-pz-YUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-369" y="34"/>
+            <point key="canvasLocation" x="-1238" y="48"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tr4-GD-SJ4">

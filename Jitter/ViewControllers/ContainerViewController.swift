@@ -8,10 +8,8 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController, UITableViewDataSource {
+class ContainerViewController: UIViewController {
     // MARK: - Outlets
-
-    @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var leftMarginConstraint: NSLayoutConstraint!
     @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
@@ -27,7 +25,6 @@ class ContainerViewController: UIViewController, UITableViewDataSource {
 
             if opening {
                 leftMarginConstraint.constant = view.frame.size.width - openingConstant
-                menuTableView.reloadData()
             } else {
                 leftMarginConstraint.constant = 0
             }
@@ -51,49 +48,43 @@ class ContainerViewController: UIViewController, UITableViewDataSource {
     }
 
     var menuViewController: UIViewController! {
-        didSet {
+        didSet(oldMenuViewController) {
             view.layoutIfNeeded()
+
+            if oldMenuViewController != nil {
+                oldMenuViewController.willMove(toParentViewController: nil)
+                oldMenuViewController.view.removeFromSuperview()
+                oldMenuViewController.didMove(toParentViewController: nil)
+            }
+
             menuView.addSubview(menuViewController.view)
-            menuTableView?.reloadData()
         }
     }
 
     var contentViewController: UIViewController! {
-        didSet {
+        didSet(oldContentViewController) {
             view.layoutIfNeeded()
+
+            if oldContentViewController != nil {
+                oldContentViewController.willMove(toParentViewController: nil)
+                oldContentViewController.view.removeFromSuperview()
+                oldContentViewController.didMove(toParentViewController: nil)
+            }
+
+            contentViewController.willMove(toParentViewController: self)
             contentView.addSubview(contentViewController.view)
+            contentViewController.didMove(toParentViewController: self)
+
+            UIView.animate(withDuration: 0.3) { () -> Void in
+                self.leftMarginConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }
         }
-    }
-
-    // MARK: - UITableViewDataSource
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewControllers.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath)
-        // FIXME: use a reusable cell.
-        let cell = UITableViewCell()
-        configureCell(cell: cell, forRowAt: indexPath)
-        return cell
-    }
-
-    func configureCell(cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.textLabel?.text = viewControllers[indexPath.row].title
     }
 
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        menuTableView.dataSource = self
-        if viewControllerArray.count > 0 {
-            contentViewController = viewControllerArray.first
-        }
-    }
-
-    private func setRootViewController() {
-
     }
 
     override func didReceiveMemoryWarning() {

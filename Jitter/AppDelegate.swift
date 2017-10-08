@@ -21,16 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let containerVC = storyboard.instantiateViewController(withIdentifier: "ContainerViewController") as! ContainerViewController
 
+        let menuVC = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        containerVC.menuViewController = menuVC
+        menuVC.containerVC = containerVC
         let tweetsVC = storyboard.instantiateViewController(withIdentifier: "TweetsViewController") as! TweetsViewController
-        tweetsVC.title = "Timeline"
+        containerVC.contentViewController = tweetsVC
 
-        containerVC.viewControllers = [
-            tweetsVC
-        ]
         window?.rootViewController = containerVC
 
-        if User.currentUser != nil {
-            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+        if User.currentUser == nil {
+            let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
             window?.rootViewController = vc
         }
 
