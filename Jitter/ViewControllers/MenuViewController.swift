@@ -38,6 +38,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         profileVC.feedType = TwitterFeedTypes.profile
         viewControllers.append(profileVC)
 
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MenuCell")
+
         tableView.reloadData()
         super.viewDidLoad()
     }
@@ -53,8 +55,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath)
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath)
         configureCell(cell: cell, forRowAt: indexPath)
         return cell
     }
