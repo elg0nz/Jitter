@@ -13,10 +13,12 @@ enum TwitterFeedTypes {
     case home
     case mentions
     case profile
+    case otherProfile
 }
 
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var tweets: [Tweet]!
+    var screenName: String?
     public var feedType: TwitterFeedTypes = .home
     let alertController = UIAlertController(title: "Error", message: "Message", preferredStyle: .alert)
 
@@ -50,7 +52,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if feedType == .profile {
+        if feedType == .profile || feedType == .otherProfile {
             let cell = tweetsTableView.dequeueReusableCell(withIdentifier: "UserTableViewCell") as! UserTableViewCell
             if let currentUser = User.currentUser {
                 cell.userName.text = currentUser.screenname
@@ -89,6 +91,19 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.reloadMentions()
         case .profile:
             self.reloadProfile()
+        case .otherProfile:
+            self.reloadOtherUserProfile()
+        }
+    }
+
+    private func reloadOtherUserProfile() {
+        TwitterClient.sharedInstance.userActivity(screenName: screenName!, success: { (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tweetsTableView.reloadData()
+        }) { (error: NSError) in
+            print(error.localizedDescription)
+            self.alertController.message = "Could not refresh"
+            self.present(self.alertController, animated: true)
         }
     }
 
@@ -142,7 +157,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self
         tweetsTableView.estimatedRowHeight = 125
-        if feedType == .profile {
+        if feedType == .profile || feedType == .otherProfile {
             tweetsTableView.estimatedSectionHeaderHeight = 225
             tweetsTableView.sectionHeaderHeight = 225
         }

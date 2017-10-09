@@ -44,6 +44,7 @@ class User: NSObject {
 
     static private var _currentUser: User?
     static let userDidLogoutNotificationName = NSNotification.Name(rawValue: "userDidLogout")
+    static let userProfileTapNotificationName = NSNotification.Name(rawValue: "profileTap")
 
     class var currentUser: User? {
         get {

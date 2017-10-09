@@ -85,6 +85,18 @@ class ContainerViewController: UIViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            forName: User.userProfileTapNotificationName,
+            object: nil,
+            queue: OperationQueue.main
+        ) { (notification: Notification) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let profileVC = storyboard.instantiateViewController(withIdentifier: "TweetsViewController") as! TweetsViewController
+            profileVC.feedType = TwitterFeedTypes.otherProfile
+            let user = notification.userInfo!["user"] as! User 
+            profileVC.screenName = user.screenname
+            self.contentViewController = profileVC
+        }
     }
 
     override func didReceiveMemoryWarning() {

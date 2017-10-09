@@ -37,6 +37,18 @@ class TweetTableViewCell: UITableViewCell {
         replyCount.text = String(tweet.replyCount)
         retweetCount.text = String(tweet.retweetCount)
         likeCount.text = String(tweet.favoritesCount)
+
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.imageTap))
+        singleTap.numberOfTapsRequired = 1
+        self.userImageView.isUserInteractionEnabled = true
+        self.userImageView.addGestureRecognizer(singleTap)
+    }
+
+    @objc func imageTap(_ sender: UITapGestureRecognizer) {
+        if let user = self.tweet?.user {
+            let userInfo = ["user": user]
+            NotificationCenter.default.post(name: User.userProfileTapNotificationName, object: nil, userInfo: userInfo)
+        }
     }
 
     override func awakeFromNib() {
