@@ -95,6 +95,7 @@ class ContainerViewController: UIViewController {
             profileVC.feedType = TwitterFeedTypes.otherProfile
             let user = notification.userInfo!["user"] as! User 
             profileVC.screenName = user.screenname
+            profileVC.currentUser = user
             self.contentViewController = profileVC
         }
     }

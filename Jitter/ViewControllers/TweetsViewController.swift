@@ -19,6 +19,7 @@ enum TwitterFeedTypes {
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var tweets: [Tweet]!
     var screenName: String?
+    var currentUser: User? = User.currentUser
     public var feedType: TwitterFeedTypes = .home
     let alertController = UIAlertController(title: "Error", message: "Message", preferredStyle: .alert)
 
@@ -54,12 +55,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if feedType == .profile || feedType == .otherProfile {
             let cell = tweetsTableView.dequeueReusableCell(withIdentifier: "UserTableViewCell") as! UserTableViewCell
-            if let currentUser = User.currentUser {
+            if let currentUser = self.currentUser {
                 cell.userName.text = currentUser.screenname
                 if let fullName = currentUser.name {
                     cell.fullName.text = fullName
+                } else {
+                    cell.fullName.text = "WanderTap"
                 }
-                cell.fullName.text = "WanderTap"
                 cell.followersCount.text = "\(currentUser.followersCount)"
                 cell.followingCount.text = "\(currentUser.followingCount)"
                 cell.tweetsCount.text = "\(currentUser.tweetsCount)"
