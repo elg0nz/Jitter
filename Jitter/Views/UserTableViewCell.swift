@@ -17,7 +17,8 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetsCount: UILabel!
     @IBOutlet weak var followersCount: UILabel!
     @IBOutlet weak var followingCount: UILabel!
-
+    @IBOutlet weak var backgroundImageHeight: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -21,6 +21,9 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cOc-lw-c02">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="113" id="gf2-Og-H22"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Pi-NF-deE">
                         <rect key="frame" x="8" y="80" width="59" height="59"/>
@@ -109,6 +112,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="backgroundImage" destination="cOc-lw-c02" id="o3Y-DW-dsl"/>
+                <outlet property="backgroundImageHeight" destination="gf2-Og-H22" id="2It-Mq-c84"/>
                 <outlet property="followersCount" destination="xNk-l3-3iU" id="Hgd-zy-FME"/>
                 <outlet property="followingCount" destination="7L2-AA-syB" id="O4N-3U-hP9"/>
                 <outlet property="fullName" destination="Xri-6s-Cyo" id="b5o-aW-cgS"/>

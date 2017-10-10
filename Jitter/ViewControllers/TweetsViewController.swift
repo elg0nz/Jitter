@@ -28,6 +28,16 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         TwitterClient.sharedInstance.logout()
     }
 
+    // MARK: - TableView Delegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 12 {
+            if let header = tweetsTableView.headerView(forSection: 0) {
+                let headerRect = CGRect(x: 0, y: 0, width: header.frame.width, height: 0)
+                header.frame = headerRect
+            }
+        }
+    }
+
     // MARK: - DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = tweets?.count {
